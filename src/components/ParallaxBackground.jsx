@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { motion } from "motion/react";
 
 const ParallaxBackground = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -25,9 +26,9 @@ const ParallaxBackground = () => {
 
   // Calculate parallax offsets
   const scrollProgress = Math.min(scrollY / (window.innerHeight || 1000), 1);
-  const mountain3Y = scrollProgress * 50;
-  const mountain2Y = scrollProgress * 25;
-  const mountain1Y = scrollProgress * 10;
+  const mountain3Y = scrollProgress * 250;
+  const mountain2Y = scrollProgress * 30;
+  const mountain1Y = scrollProgress * 0;
   const cloudsX = scrollProgress * -15;
 
   // Generate optimized falling stars
@@ -96,56 +97,46 @@ const ParallaxBackground = () => {
         <div className="absolute top-16 left-1/3 w-28 h-14 bg-white/6 rounded-full blur-sm" />
       </div>
 
-      {/* Mountain Layer 3 - Furthest */}
-      <div
-        className="absolute inset-0 transition-transform duration-75"
-        style={{ transform: `translateY(${mountain3Y}%)` }}
-      >
-        <svg
-          className="absolute bottom-0 w-full h-96 text-slate-800/60"
-          viewBox="0 0 1200 400"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,400 L0,200 Q300,100 600,180 Q900,80 1200,160 L1200,400 Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
+      {/* Mountain Layer 3 */}
+<div
+  className="absolute inset-0"
+  style={{
+    backgroundImage: "url(/assets/mountain-3.png)",
+    backgroundPosition: "bottom",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    transform: `translateY(${mountain3Y}px)`,
+    zIndex: +10,
+  }}
+/>
 
-      {/* Mountain Layer 2 - Middle */}
-      <div
-        className="absolute inset-0 transition-transform duration-75"
-        style={{ transform: `translateY(${mountain2Y}%)` }}
-      >
-        <svg
-          className="absolute bottom-0 w-full h-80 text-slate-700/80"
-          viewBox="0 0 1200 350"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,350 L0,250 Q200,150 400,200 Q600,120 800,180 Q1000,140 1200,200 L1200,350 Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
+{/* Mountain Layer 2 */}
+<motion.div
+  className="absolute inset-0"
+  style={{
+    backgroundImage: "url(/assets/mountain-2.png)",
+    backgroundPosition: "bottom",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    zIndex: +20,
+  }}
+  animate={{ y: mountain2Y }}
+  transition={{ type: "tween", ease: "linear", duration: 0 }}
+/>
 
-      {/* Mountain Layer 1 - Closest */}
-      <div
-        className="absolute inset-0 transition-transform duration-75"
-        style={{ transform: `translateY(${mountain1Y}%)` }}
-      >
-        <svg
-          className="absolute bottom-0 w-full h-64 text-slate-600"
-          viewBox="0 0 1200 300"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,300 L0,220 Q150,180 300,200 Q450,160 600,190 Q750,170 900,185 Q1050,160 1200,180 L1200,300 Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
+{/* Mountain Layer 1 */}
+<motion.div
+  className="absolute inset-0"
+  style={{
+    backgroundImage: "url(/assets/mountain-1.png)",
+    backgroundPosition: "bottom",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    zIndex: +40,
+  }}
+  animate={{ y: mountain1Y }}
+  transition={{ type: "tween", ease: "linear", duration: 0 }}
+/>
 
       {/* Foreground Glow Effect */}
       <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-purple-900/20 to-transparent" />
@@ -161,24 +152,24 @@ const ParallaxBackground = () => {
       </div> */}
 
       {/* CSS Keyframes */}
-      <style jsx>{`
-        @keyframes fallingStar {
-          0% {
-            transform: translateY(-10px) translateX(0px);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh) translateX(50px);
-            opacity: 0;
-          }
-        }
-      `}</style>
+      <style>{`
+  @keyframes fallingStar {
+    0% {
+      transform: translateY(-10px) translateX(0px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) translateX(50px);
+      opacity: 0;
+    }
+  }
+`}</style>
     </section>
   );
 };
