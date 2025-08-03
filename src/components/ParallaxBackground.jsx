@@ -26,7 +26,7 @@ const ParallaxBackground = () => {
 
   // Calculate parallax offsets
   const scrollProgress = Math.min(scrollY / (window.innerHeight || 1000), 1);
-  const mountain3Y = scrollProgress * 250;
+  const mountain3Y = scrollProgress * 1250;
   const mountain2Y = scrollProgress * 30;
   const mountain1Y = scrollProgress * 0;
   const cloudsX = scrollProgress * -15;
@@ -180,30 +180,7 @@ const Demo = () => {
     <div className="relative">
       <ParallaxBackground />
       
-      {/* Scrollable content */}
-      <div className="relative z-20 bg-transparent">
-        <div className="h-screen" /> {/* Spacer for parallax effect */}
-        
-        <div className="bg-gradient-to-b from-slate-900 to-black text-white p-8">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <h2 className="text-4xl font-bold text-center mb-8">Content Section</h2>
-            
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10">
-                <h3 className="text-2xl font-semibold mb-4">Section {i + 1}</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-                  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-                  sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };
